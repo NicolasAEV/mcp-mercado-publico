@@ -16,6 +16,16 @@ import {
 
 @Injectable()
 export class MercadoPublicoService {
+  // ─── CACHE ────────────────────────────────────────────────────────────────
+
+  /** Lista de compradores cacheada. Válida por 1 hora (la lista cambia raramente). */
+  private compradorCache: {
+    data: Array<Record<string, unknown>>;
+    timestamp: number;
+  } | null = null;
+
+  private readonly CACHE_TTL_MS = 60 * 60 * 1000; // 1 hora
+
   // ─── HTTP ─────────────────────────────────────────────────────────────────
 
   private async get<T>(path: string, params: MpQueryParams): Promise<T> {
@@ -96,7 +106,7 @@ export class MercadoPublicoService {
 
     // Procesamos en lotes de 5 días para no saturar la IP ni exceder límites.
     // Política ChileCompra: validaciones por IP; uso excesivo puede derivar en bloqueo.
-    const BATCH_SIZE = 5;
+    const BATCH_SIZE = 10;
     const resultados: unknown[] = [];
     for (let i = 0; i < fechas.length; i += BATCH_SIZE) {
       const lote = fechas.slice(i, i + BATCH_SIZE);
@@ -220,7 +230,7 @@ export class MercadoPublicoService {
 
     const fechas = this.generarFechasRango(inicio, fin);
 
-    const BATCH_SIZE = 5;
+    const BATCH_SIZE = 10;
     const resultados: unknown[] = [];
     for (let i = 0; i < fechas.length; i += BATCH_SIZE) {
       const lote = fechas.slice(i, i + BATCH_SIZE);
@@ -328,11 +338,21 @@ export class MercadoPublicoService {
     ticket: string,
     nombre: string,
   ): Promise<Array<{ CodigoOrganismo: string; NombreOrganismo: string }>> {
-    const response = await this.get<{
-      listaEmpresas?: Array<Record<string, unknown>>;
-    }>(MP_ENDPOINTS.buscarComprador, { ticket });
+    const ahora = Date.now();
+    if (
+      !this.compradorCache ||
+      ahora - this.compradorCache.timestamp > this.CACHE_TTL_MS
+    ) {
+      const response = await this.get<{
+        listaEmpresas?: Array<Record<string, unknown>>;
+      }>(MP_ENDPOINTS.buscarComprador, { ticket });
+      this.compradorCache = {
+        data: response?.listaEmpresas ?? [],
+        timestamp: ahora,
+      };
+    }
 
-    const listado = response?.listaEmpresas ?? [];
+    const listado = this.compradorCache.data;
     const nombreLower = nombre.toLowerCase();
 
     return listado
