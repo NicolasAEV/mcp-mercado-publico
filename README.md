@@ -1,0 +1,306 @@
+# 🇨🇱 MCP Mercado Público
+
+Servidor **Model Context Protocol (MCP)** para la API pública de [Mercado Público / ChileCompra](https://www.chilecompra.cl/api/). Permite que asistentes de IA consulten licitaciones, órdenes de compra y empresas del Estado chileno en tiempo real.
+
+---
+
+## 🔑 Paso 1: Obtener tu ticket gratuito
+
+Antes de usar el servidor necesitas tu propio ticket (API key):
+
+1. Ir a [api.mercadopublico.cl](https://api.mercadopublico.cl/modules/IniciarSesion.aspx)
+2. Iniciar sesión con **Clave Única**
+3. Completar el formulario → el ticket llega a tu correo
+
+> El servidor **no almacena credenciales**. El ticket se pasa como parámetro en cada consulta.
+
+---
+
+## ⚙️ Paso 2: Configurar en tu IDE
+
+No necesitas clonar ni compilar nada. Usa `npx` directamente.
+
+Tienes **dos formas** de pasar tu ticket:
+
+| Método | Cuándo usarlo |
+|---|---|
+| **Variable de entorno `MERCADO_PUBLICO_TICKET`** | Configuras el ticket una sola vez en el IDE — el asistente nunca te lo pedirá |
+| **Parámetro `ticket` en cada tool call** | Si no configuraste la env var, pásalo directamente en cada consulta |
+
+Se recomienda usar la variable de entorno para una experiencia fluida.
+
+
+### Claude Desktop
+
+**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`  
+**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "mercado-publico": {
+      "command": "npx",
+      "args": ["-y", "mcp-mercado-publico"],
+      "env": {
+        "MERCADO_PUBLICO_TICKET": "TU-TICKET-AQUI"
+      }
+    }
+  }
+}
+```
+
+Reinicia Claude Desktop después de guardar.
+
+---
+
+### Cursor
+
+**Global** `~/.cursor/mcp.json` · **Por proyecto** `.cursor/mcp.json`
+
+```json
+{
+  "mcpServers": {
+    "mercado-publico": {
+      "command": "npx",
+      "args": ["-y", "mcp-mercado-publico"],
+      "env": {
+        "MERCADO_PUBLICO_TICKET": "TU-TICKET-AQUI"
+      }
+    }
+  }
+}
+```
+
+Verifica en **Settings → MCP** que el servidor aparezca con punto verde.
+
+---
+
+### VS Code (GitHub Copilot)
+
+> Requiere VS Code 1.99+ y Copilot en **Agent mode**.
+
+**Por proyecto** `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "mercado-publico": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "mcp-mercado-publico"],
+      "env": {
+        "MERCADO_PUBLICO_TICKET": "TU-TICKET-AQUI"
+      }
+    }
+  }
+}
+```
+
+**Global** en `settings.json`:
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "mercado-publico": {
+        "type": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-mercado-publico"],
+        "env": {
+          "MERCADO_PUBLICO_TICKET": "TU-TICKET-AQUI"
+        }
+      }
+    }
+  }
+}
+```
+
+---
+
+### Antigravity (Google DeepMind)
+
+`C:\Users\<usuario>\.gemini\antigravity\claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "mercado-publico": {
+      "command": "npx",
+      "args": ["-y", "mcp-mercado-publico"],
+      "env": {
+        "MERCADO_PUBLICO_TICKET": "TU-TICKET-AQUI"
+      }
+    }
+  }
+}
+```
+
+---
+
+### Windsurf (Codeium)
+
+`C:\Users\<usuario>\.codeium\windsurf\mcp_config.json`
+
+```json
+{
+  "mcpServers": {
+    "mercado-publico": {
+      "command": "npx",
+      "args": ["-y", "mcp-mercado-publico"],
+      "env": {
+        "MERCADO_PUBLICO_TICKET": "TU-TICKET-AQUI"
+      }
+    }
+  }
+}
+```
+
+---
+
+### Desarrollo local (sin publicar en npm)
+
+Si estás modificando el código fuente, compila primero y apunta al binario local:
+
+```bash
+npm install && npm run build
+```
+
+```json
+{
+  "mcpServers": {
+    "mercado-publico": {
+      "command": "node",
+      "args": ["D:\\PROGRAMACION\\NEST-JS\\mcp-mercado-publico\\dist\\main.js"]
+    }
+  }
+}
+```
+
+---
+
+## 🛠️ Herramientas disponibles
+
+| Tool | Descripción |
+|---|---|
+| `buscar_licitaciones` | Lista licitaciones por fecha, estado, proveedor u organismo (nombre o código) |
+| `buscar_licitaciones_rango` | Busca licitaciones en un rango de fechas (máximo 30 días) |
+| `obtener_licitacion` | Detalle completo de una licitación por su código |
+| `buscar_ordenes_de_compra` | Lista órdenes de compra por fecha, estado, proveedor u organismo (nombre o código) |
+| `obtener_orden_de_compra` | Detalle completo de una OC por su código |
+| `buscar_proveedor` | Busca un proveedor por su RUT |
+| `listar_compradores` | Lista todos los organismos públicos disponibles |
+| `buscar_organismo` | Busca un organismo público por nombre — retorna su CodigoOrganismo |
+
+---
+
+## 💬 Ejemplos de uso
+
+Una vez configurado, puedes preguntarle al asistente cosas como:
+
+```
+¿Cuáles son las licitaciones activas de hoy?
+Mi ticket es F8537A18-6766-4DEF-9E59-426B4FEE2844
+```
+
+```
+Busca la licitación con código 1509-5-L114 usando mi ticket ABC123-...
+```
+
+```
+¿Qué órdenes de compra aceptadas existen para el 01042026?
+```
+
+```
+Busca las licitaciones de la Municipalidad de Alto del Carmen
+```
+
+```
+Busca el proveedor con RUT 70.017.820-k
+```
+
+---
+
+## 📋 Referencia de estados
+
+### Licitaciones — parámetro `estado`
+
+| Valor para `?estado=` | Código en respuesta |
+|---|---|
+| `activas` | Todas las publicadas hoy |
+| `publicada` | 5 |
+| `cerrada` | 6 |
+| `desierta` | 7 |
+| `adjudicada` | 8 |
+| `revocada` | 18 |
+| `suspendida` | 19 |
+| `todos` | Todos los estados |
+
+### Órdenes de Compra — parámetro `estado`
+
+| Valor para `?estado=` | Código en respuesta |
+|---|---|
+| `enviadaproveedor` | 4 |
+| *(sin query param)* | 5 (En proceso, solo en respuesta) |
+| `aceptada` | 6 |
+| `cancelada` | 9 |
+| `recepcionconforme` | 12 |
+| `pendienterecepcion` | 13 |
+| `recepcionaceptadacialmente` | 14 |
+| `recepecionconformeincompleta` | 15 |
+| `todos` | Todos los estados |
+
+### Formato de fecha
+
+La API usa `ddmmaaaa`. Ejemplos: `07042026` → 7 de abril de 2026.
+
+---
+
+## 📦 Publicar en npm
+
+```bash
+npm login
+npm publish   # ejecuta npm run build automáticamente (prepublishOnly)
+```
+
+---
+
+## 🏗️ Estructura del proyecto
+
+```
+src/
+├── main.ts                                           # Bootstrap (modo stdio)
+├── app.module.ts
+├── common/
+│   └── constants/
+│       └── api.constants.ts                          # BASE_URL, endpoints, códigos de estado
+├── mercado-publico/
+│   ├── interfaces/mercado-publico.interfaces.ts      # Tipos de parámetros
+│   ├── helpers/query-builder.helper.ts               # Construcción de query params
+│   ├── mercado-publico.service.ts                    # Cliente HTTP
+│   └── mercado-publico.module.ts
+└── mcp/
+    ├── constants/tool-schemas.constants.ts           # Campos Zod reutilizables
+    ├── tools/
+    │   ├── licitaciones.tools.ts
+    │   ├── ordenes-compra.tools.ts
+    │   ├── empresas.tools.ts
+    │   ├── estructura.tools.ts
+    │   └── ayuda.tools.ts
+    ├── mcp-server.ts
+    ├── mcp.service.ts
+    └── mcp.module.ts
+```
+
+---
+
+## 📝 Límites de la API
+
+- **10.000 solicitudes diarias** por ticket
+- Para consultas masivas: horario nocturno (22:00–07:00 hrs Chile)
+- Documentación oficial: [chilecompra.cl/api](https://www.chilecompra.cl/api/)
+
+---
+
+## 🤝 Fuente de datos
+
+Datos de [Mercado Público](https://www.mercadopublico.cl/), **Dirección ChileCompra**, Ministerio de Hacienda, Gobierno de Chile. Al publicar datos sin modificarlos, indicar que la fuente es la Dirección ChileCompra.
