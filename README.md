@@ -293,6 +293,16 @@ src/
 
 ---
 
+## ⚠️ Limitación importante: archivos de licitaciones
+
+Este MCP **no tiene acceso a los archivos adjuntos** de las licitaciones ni de las órdenes de compra (bases de licitación, anexos, especificaciones técnicas, resoluciones, etc.).
+
+La API de Mercado Público **no retorna links de descarga ni el contenido de los documentos**. Solo expone los datos estructurados (metadatos) de cada proceso: montos, fechas, estados, ítems, organismos, etc.
+
+Para acceder a los documentos debes ingresar directamente al portal: [mercadopublico.cl](https://www.mercadopublico.cl)
+
+---
+
 ## 📝 Políticas y condiciones de uso de la API
 
 > Las limitaciones descritas a continuación **no son impuestas por este servidor MCP**, sino por la **API oficial de Mercado Público (ChileCompra)**. Este servidor las respeta y documenta para que los usuarios las conozcan antes de usar el servicio.

@@ -160,6 +160,15 @@ Muestra esta guía completa. Sin parámetros.
 
 ---
 
+## ⚠️ Limitación importante: archivos de licitaciones
+  Este MCP NO tiene acceso a los archivos adjuntos de licitaciones ni órdenes de compra
+  (bases, anexos, especificaciones técnicas, resoluciones, etc.).
+  La API de Mercado Público no retorna links de descarga ni el contenido de los documentos.
+  Solo expone datos estructurados (metadatos): montos, fechas, estados, ítems, organismos, etc.
+  Para acceder a los documentos: https://www.mercadopublico.cl
+
+---
+
 ##  Límites y políticas de uso
   - 10.000 solicitudes diarias por ticket (no modificable)
   - El uso excesivo puede derivar en suspensión temporal o bloqueo permanente del acceso
