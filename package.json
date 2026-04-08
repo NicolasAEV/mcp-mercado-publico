@@ -1,6 +1,6 @@
 {
   "name": "mcp-mercado-publico",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "MCP server para la API pública de Mercado Público (ChileCompra). Consulta licitaciones, órdenes de compra y empresas del Estado chileno en tiempo real.",
   "author": "Nicolas Escobar Villegas",
   "license": "MIT",
