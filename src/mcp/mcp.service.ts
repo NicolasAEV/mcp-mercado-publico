@@ -20,7 +20,7 @@ export class McpService implements OnModuleInit {
     registerOrdenesDeCompraTools(mcpServer, this.mercadoPublicoService);
     registerEmpresasTools(mcpServer, this.mercadoPublicoService);
     this.logger.log(
-      'MCP tools registradas: ayuda, estructura, licitaciones, ordenes-compra, empresas',
+      'MCP tools registradas: ayuda, estructura, consultas, ejemplos_url, licitaciones, ordenes-compra, empresas',
     );
   }
 }

@@ -135,6 +135,30 @@ Muestra esta guía completa. Sin parámetros.
 
 ---
 
+### 9. estructura
+Devuelve la estructura de respuesta JSON (los campos exactos que retorna la API) para cada entidad. Ideal para conocer qué data provee el integrador oficial nativo.
+
+Parámetros:
+  - entidad  → licitaciones | ordenes_compra | proveedores | compradores
+
+---
+
+### 10. consultas
+Devuelve la información de parámetros y anexos (diccionarios explicativos de los campos numéricos) requeridos para consultar en la API nativa. 
+
+Parámetros:
+  - entidad  → licitaciones | ordenes_compra | proveedores | compradores
+
+---
+
+### 11. ejemplos_url
+Devuelve los ejemplos de rutas y combinaciones URLs (HTTP) directas a los endpoints como referencias.
+
+Parámetros:
+  - entidad  → licitaciones | ordenes_compra | proveedores | compradores
+
+---
+
 ## Referencia de estados
 
 ### Licitaciones (códigos en respuesta)
