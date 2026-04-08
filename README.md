@@ -293,14 +293,41 @@ src/
 
 ---
 
-## 📝 Límites de la API
+## 📝 Políticas y condiciones de uso de la API
 
-- **10.000 solicitudes diarias** por ticket
-- Para consultas masivas: horario nocturno (22:00–07:00 hrs Chile)
-- Documentación oficial: [chilecompra.cl/api](https://www.chilecompra.cl/api/)
+> Las limitaciones descritas a continuación **no son impuestas por este servidor MCP**, sino por la **API oficial de Mercado Público (ChileCompra)**. Este servidor las respeta y documenta para que los usuarios las conozcan antes de usar el servicio.
+
+
+### Uso del ticket
+
+- El ticket se solicita mediante formulario oficial seleccionando la opción **"Solicitud de Ticket"**.
+- Debe completarse con datos reales: nombre, apellido, RUT y correo electrónico.
+- Se entrega **un único ticket por persona**. Datos inconsistentes pueden derivar en limitación o suspensión del acceso.
+- ChileCompra usa los datos personales únicamente para operación, control y administración del servicio — no los comparte con terceros, salvo mandato judicial.
+
+### Límites de uso
+
+- **10.000 solicitudes diarias** por ticket — no modificable.
+- El uso excesivo o abusivo puede derivar en **suspensión temporal o bloqueo permanente**.
+- La API incluye **validaciones por dirección IP**: múltiples solicitudes desde la misma IP pueden generar restricciones.
+- Para procesos de alta demanda o descarga masiva, usar **horario nocturno (22:00–07:00 hrs, Chile)**.
+
+### Soporte
+
+- Soporte únicamente a través del formulario de sugerencias del sitio web de ChileCompra.
+- Plazo de respuesta: máximo **3 días hábiles**.
+- No se atienden solicitudes informales ni por correo institucional directo.
+
+### Responsabilidad
+
+- La API es un servicio adicional y voluntario — ChileCompra puede modificarla, suspenderla o darla de baja sin previo aviso.
+- ChileCompra no se hace responsable de la información publicada por terceros mediante aplicaciones que usen la API.
+- Al publicar datos obtenidos desde la API **sin modificarlos**, debe indicarse que la fuente es la **Dirección ChileCompra**.
+
+Documentación oficial: [chilecompra.cl/api](https://www.chilecompra.cl/api/)
 
 ---
 
 ## 🤝 Fuente de datos
 
-Datos de [Mercado Público](https://www.mercadopublico.cl/), **Dirección ChileCompra**, Ministerio de Hacienda, Gobierno de Chile. Al publicar datos sin modificarlos, indicar que la fuente es la Dirección ChileCompra.
+Datos de [Mercado Público](https://www.mercadopublico.cl/), **Dirección ChileCompra**, Ministerio de Hacienda, Gobierno de Chile.
