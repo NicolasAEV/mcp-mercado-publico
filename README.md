@@ -190,6 +190,10 @@ npm install && npm run build
 | `buscar_proveedor` | Busca un proveedor por su RUT |
 | `listar_compradores` | Lista todos los organismos públicos disponibles |
 | `buscar_organismo` | Busca un organismo público por nombre — retorna su CodigoOrganismo |
+| `estructura` | Retorna la estructura de respuesta JSON de la API nativa para cualquier entidad |
+| `consultas` | Retorna los parámetros funcionales y diccionarios de anexos para consultar la API |
+| `ejemplos_url` | Muestra ejemplos reales de URIs HTTP de la API y los distintos formatos soportados |
+| `ayuda` | Muestra la guía completa de uso del MCP, referencias de códigos y límites operativos |
 
 ---
 
