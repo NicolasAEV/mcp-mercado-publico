@@ -159,7 +159,7 @@ export class MercadoPublicoService {
         return this.get<{ Listado?: unknown[] }>(
           MP_ENDPOINTS.licitaciones,
           buildLicitacionesQuery(params),
-        );
+        ).catch(() => ({ Listado: [] as unknown[] }));
       }),
     );
     return respuestas.flatMap((resp) => resp?.Listado ?? []);
@@ -259,7 +259,7 @@ export class MercadoPublicoService {
         return this.get<{ Listado?: unknown[] }>(
           MP_ENDPOINTS.ordenesDeCompra,
           buildOrdenesDeCompraQuery(params),
-        );
+        ).catch(() => ({ Listado: [] as unknown[] }));
       }),
     );
     return respuestas.flatMap((resp) => resp?.Listado ?? []);
