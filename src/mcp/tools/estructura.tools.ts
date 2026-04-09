@@ -38,13 +38,15 @@ const LICITACIONES_ESTRUCTURA = {
     Descripcion: 'string',
     FechaCierre: 'string',
     Estado: 'string',
-    Comprador: 'Objeto con CodigoOrganismo, NombreOrganismo, RutUnidad, DireccionUnidad, RegionUnidad, etc.',
+    Comprador:
+      'Objeto con CodigoOrganismo, NombreOrganismo, RutUnidad, DireccionUnidad, RegionUnidad, etc.',
     DiasCierreLicitacion: 'string',
     Informada: 'number',
     CodigoTipo: 'number',
     Tipo: 'string',
     Moneda: 'string',
-    Fechas: 'Objeto con FechaCreacion, FechaCierre, FechaPublicacion, FechaAdjudicacion, etc.',
+    Fechas:
+      'Objeto con FechaCreacion, FechaCierre, FechaPublicacion, FechaAdjudicacion, etc.',
     MontoEstimado: 'number',
     JustificacionMontoEstimado: 'string',
     Tiempo: 'string',
@@ -52,7 +54,8 @@ const LICITACIONES_ESTRUCTURA = {
     TipoPago: 'string',
     SubContratacion: 'string',
     Renovable: 'number',
-    Items: 'Objeto {"Cantidad": number, "Listado": [{Correlativo, CodigoProducto, Categoria, NombreProducto, Descripcion, UnidadMedida, Cantidad, Adjudicacion}]}',
+    Items:
+      'Objeto {"Cantidad": number, "Listado": [{Correlativo, CodigoProducto, Categoria, NombreProducto, Descripcion, UnidadMedida, Cantidad, Adjudicacion}]}',
     Adjudicacion: 'Objeto con Oferentes y detalles del acta o nulo',
   },
   limitacion_archivos: LIMITACION_ARCHIVOS,
@@ -73,7 +76,8 @@ const ORDENES_ESTRUCTURA = {
     ],
   },
   respuesta_detalle: {
-    _nota: 'Actualmente al buscar por código se obtienen estos detalles extendidos:',
+    _nota:
+      'Actualmente al buscar por código se obtienen estos detalles extendidos:',
     DescripcionTipo: 'string',
     FechaModificacion: 'string',
     IVA: 'number',
@@ -126,13 +130,22 @@ const LICITACIONES_CONSULTAS = {
   parametros_aceptados: {
     ticket: 'string (requerido)',
     fecha: 'string (ddmmaaaa)',
-    estado: 'string (activas, publicada, cerrada, desierta, adjudicada, revocada, suspendida, todos)',
+    estado:
+      'string (activas, publicada, cerrada, desierta, adjudicada, revocada, suspendida, todos)',
     CodigoOrganismo: 'number',
     CodigoProveedor: 'number',
-    codigo: 'string (ej: 1509-5-L114. Al usarse ignora el resto de parámetros.)',
+    codigo:
+      'string (ej: 1509-5-L114. Al usarse ignora el resto de parámetros.)',
   },
   anexos: {
-    estados: { Publicada: '5', Cerrada: '6', Desierta: '7', Adjudicada: '8', Revocada: '18', Suspendida: '19' },
+    estados: {
+      Publicada: '5',
+      Cerrada: '6',
+      Desierta: '7',
+      Adjudicada: '8',
+      Revocada: '18',
+      Suspendida: '19',
+    },
     tipo_licitacion: {
       L1: 'Licitación Pública Menor a 100 UTM',
       LE: 'Licitación Pública Entre 100 y 1000 UTM',
@@ -158,15 +171,44 @@ const LICITACIONES_CONSULTAS = {
       CA: 'Orden de Compra sin Resolución',
       SE: 'Orden de Compra proveniente de adquisición sin emisión automática',
     },
-    unidad_monetaria: { CLP: 'Peso Chileno', CLF: 'Unidad de Fomento', USD: 'Dólar Americano', UTM: 'Unidad Tributaria Mensual', EUR: 'Euro' },
-    monto_estimado: { '1': 'Presupuesto Disponible', '2': 'Precio Referencial' },
-    modalidad_pago: {
-      '1': 'Pago a 30 días', '2': 'Pago a 30, 60 y 90 días', '3': 'Pago al día', '4': 'Pago Anual', '5': 'Pago a 60 días',
-      '6': 'Pagos Mensuales', '7': 'Pago Contra Entrega Conforme', '8': 'Pago Bimensual', '9': 'Pago Por Estado de Avance', '10': 'Pago Trimestral',
+    unidad_monetaria: {
+      CLP: 'Peso Chileno',
+      CLF: 'Unidad de Fomento',
+      USD: 'Dólar Americano',
+      UTM: 'Unidad Tributaria Mensual',
+      EUR: 'Euro',
     },
-    unidad_tiempo: { '1': 'Horas', '2': 'Días', '3': 'Semanas', '4': 'Meses', '5': 'Años' },
-    tipo_acto_administrativo: { '1': 'Autorización', '2': 'Resolución', '3': 'Otros', '4': 'Decreto', '5': 'Acuerdo' },
-  }
+    monto_estimado: {
+      '1': 'Presupuesto Disponible',
+      '2': 'Precio Referencial',
+    },
+    modalidad_pago: {
+      '1': 'Pago a 30 días',
+      '2': 'Pago a 30, 60 y 90 días',
+      '3': 'Pago al día',
+      '4': 'Pago Anual',
+      '5': 'Pago a 60 días',
+      '6': 'Pagos Mensuales',
+      '7': 'Pago Contra Entrega Conforme',
+      '8': 'Pago Bimensual',
+      '9': 'Pago Por Estado de Avance',
+      '10': 'Pago Trimestral',
+    },
+    unidad_tiempo: {
+      '1': 'Horas',
+      '2': 'Días',
+      '3': 'Semanas',
+      '4': 'Meses',
+      '5': 'Años',
+    },
+    tipo_acto_administrativo: {
+      '1': 'Autorización',
+      '2': 'Resolución',
+      '3': 'Otros',
+      '4': 'Decreto',
+      '5': 'Acuerdo',
+    },
+  },
 };
 
 const ORDENES_CONSULTAS = {
@@ -175,35 +217,60 @@ const ORDENES_CONSULTAS = {
   parametros_aceptados: {
     ticket: 'string (requerido)',
     fecha: 'string (ddmmaaaa)',
-    estado: 'string (enviadaproveedor, aceptada, cancelada, recepcionconforme, pendienterecepcion, recepcionaceptadacialmente, recepecionconformeincompleta, todos)',
+    estado:
+      'string (enviadaproveedor, aceptada, cancelada, recepcionconforme, pendienterecepcion, recepcionaceptadacialmente, recepecionconformeincompleta, todos)',
     CodigoOrganismo: 'number',
     CodigoProveedor: 'number',
-    codigo: 'string (ej: 2097-241-SE14. Al usarse ignora el resto de parámetros.)',
+    codigo:
+      'string (ej: 2097-241-SE14. Al usarse ignora el resto de parámetros.)',
   },
   anexos: {
     estados_nomenclatura: {
       'Enviada a Proveedor': 'enviadaproveedor (código 4)',
-      'Aceptada': 'aceptada (código 6)',
-      'Cancelada': 'cancelada (código 9)',
+      Aceptada: 'aceptada (código 6)',
+      Cancelada: 'cancelada (código 9)',
       'Recepción Conforme': 'recepcionconforme (código 12)',
       'Pendiente de Recepcionar': 'pendienterecepcion (código 13)',
       'Recepcionada Parcialmente': 'recepcionaceptadacialmente (código 14)',
-      'Recepcion Conforme Incompleta': 'recepecionconformeincompleta (código 15)',
-      'todos': 'todos'
+      'Recepcion Conforme Incompleta':
+        'recepecionconformeincompleta (código 15)',
+      todos: 'todos',
     },
     tipo_orden_compra: {
-      '1': 'OC - Automática', '2': 'D1 - Trato directo', '3': 'C1 - Emergencia e imprevisto', '4': 'F3 - Confidencialidad', '5': 'G1 - Naturaleza de negociación',
-      '6': 'R1 - Menor a 3UTM', '7': 'CA - Sin resolución', '8': 'SE - Sin emisión automática', '9': 'CM - Convenio Marco', '10': 'FG - Trato Directo (Art. 8)',
-      '11': 'TL - Convenio Marco - Tienda de Libros', '12': 'MC - Microcompra', '13': 'AG - Compra Ágil', '14': 'CC - Compra Coordinada'
+      '1': 'OC - Automática',
+      '2': 'D1 - Trato directo',
+      '3': 'C1 - Emergencia e imprevisto',
+      '4': 'F3 - Confidencialidad',
+      '5': 'G1 - Naturaleza de negociación',
+      '6': 'R1 - Menor a 3UTM',
+      '7': 'CA - Sin resolución',
+      '8': 'SE - Sin emisión automática',
+      '9': 'CM - Convenio Marco',
+      '10': 'FG - Trato Directo (Art. 8)',
+      '11': 'TL - Convenio Marco - Tienda de Libros',
+      '12': 'MC - Microcompra',
+      '13': 'AG - Compra Ágil',
+      '14': 'CC - Compra Coordinada',
     },
     tipo_despacho: {
-      '7': 'Despachar a Dirección de envío', '9': 'Despachar según programa adjuntado', '12': 'Otra Forma de Despacho', '14': 'Retiramos de su bodega',
-      '20': 'Despacho por courier o encomienda aérea', '21': 'Despacho por courier o encomienda terrestre', '22': 'A convenir'
+      '7': 'Despachar a Dirección de envío',
+      '9': 'Despachar según programa adjuntado',
+      '12': 'Otra Forma de Despacho',
+      '14': 'Retiramos de su bodega',
+      '20': 'Despacho por courier o encomienda aérea',
+      '21': 'Despacho por courier o encomienda terrestre',
+      '22': 'A convenir',
     },
     tipo_pago: {
-      '1': '15 días', '2': '30 días', '39': 'Otra forma', '46': '50 días', '47': '60 días', '48': 'A 45 días', '49': 'A más de 30 días'
-    }
-  }
+      '1': '15 días',
+      '2': '30 días',
+      '39': 'Otra forma',
+      '46': '50 días',
+      '47': '60 días',
+      '48': 'A 45 días',
+      '49': 'A más de 30 días',
+    },
+  },
 };
 
 const PROVEEDORES_CONSULTAS = {
@@ -234,14 +301,21 @@ const LICITACIONES_EJEMPLOS = {
     'XML: /licitaciones.xml',
   ],
   ejemplos_url: {
-    'Por código de licitación': 'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?codigo=1509-5-L114&ticket={{TICKET}}',
-    'Por todos los estados del día actual': 'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?ticket={{TICKET}}',
-    'Por todos los estados de una fecha en particular': 'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha=02022014&ticket={{TICKET}}',
-    'Por estado activas': 'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?estado=activas&ticket={{TICKET}}',
-    'Por estado del día actual': 'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha=02022014&estado=adjudicada&ticket={{TICKET}}',
-    'Por código de proveedor': 'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha=02022014&CodigoProveedor=17793&ticket={{TICKET}}',
-    'Por código de organismo público': 'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha=02022014&CodigoOrganismo=6945&ticket={{TICKET}}',
-  }
+    'Por código de licitación':
+      'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?codigo=1509-5-L114&ticket={{TICKET}}',
+    'Por todos los estados del día actual':
+      'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?ticket={{TICKET}}',
+    'Por todos los estados de una fecha en particular':
+      'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha=02022014&ticket={{TICKET}}',
+    'Por estado activas':
+      'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?estado=activas&ticket={{TICKET}}',
+    'Por estado del día actual':
+      'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha=02022014&estado=adjudicada&ticket={{TICKET}}',
+    'Por código de proveedor':
+      'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha=02022014&CodigoProveedor=17793&ticket={{TICKET}}',
+    'Por código de organismo público':
+      'https://api.mercadopublico.cl/servicios/v1/publico/licitaciones.json?fecha=02022014&CodigoOrganismo=6945&ticket={{TICKET}}',
+  },
 };
 
 const ORDENES_EJEMPLOS = {
@@ -251,25 +325,33 @@ const ORDENES_EJEMPLOS = {
     'XML: /ordenesdecompra.xml',
   ],
   ejemplos_url: {
-    'Por código de orden de compra': 'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?codigo=2097-241-SE14&ticket={{TICKET}}',
-    'Por todos los estados del día actual': 'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?estado=todos&ticket={{TICKET}}',
-    'Por todos los estados de una fecha específica': 'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?fecha=02022014&ticket={{TICKET}}',
-    'Por estado del día actual': 'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?fecha=02022014&estado=aceptada&ticket={{TICKET}}',
-    'Por código de organismo público': 'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?fecha=02022014&CodigoOrganismo=6945&ticket={{TICKET}}',
-    'Por código de proveedor': 'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?fecha=02022014&CodigoProveedor=17793&ticket={{TICKET}}',
-  }
+    'Por código de orden de compra':
+      'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?codigo=2097-241-SE14&ticket={{TICKET}}',
+    'Por todos los estados del día actual':
+      'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?estado=todos&ticket={{TICKET}}',
+    'Por todos los estados de una fecha específica':
+      'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?fecha=02022014&ticket={{TICKET}}',
+    'Por estado del día actual':
+      'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?fecha=02022014&estado=aceptada&ticket={{TICKET}}',
+    'Por código de organismo público':
+      'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?fecha=02022014&CodigoOrganismo=6945&ticket={{TICKET}}',
+    'Por código de proveedor':
+      'https://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?fecha=02022014&CodigoProveedor=17793&ticket={{TICKET}}',
+  },
 };
 
 const PROVEEDORES_EJEMPLOS = {
   ejemplos_url: {
-    'Por RUT de proveedor': 'https://api.mercadopublico.cl/servicios/v1/Publico/Empresas/BuscarProveedor?rutempresaproveedor=70.017.820-k&ticket={{TICKET}}'
-  }
+    'Por RUT de proveedor':
+      'https://api.mercadopublico.cl/servicios/v1/Publico/Empresas/BuscarProveedor?rutempresaproveedor=70.017.820-k&ticket={{TICKET}}',
+  },
 };
 
 const COMPRADORES_EJEMPLOS = {
   ejemplos_url: {
-    'Listar todos los organismos públicos': 'https://api.mercadopublico.cl/servicios/v1/Publico/Empresas/BuscarComprador?ticket={{TICKET}}'
-  }
+    'Listar todos los organismos públicos':
+      'https://api.mercadopublico.cl/servicios/v1/Publico/Empresas/BuscarComprador?ticket={{TICKET}}',
+  },
 };
 
 // ==============================================================================
@@ -307,8 +389,15 @@ export function registerEstructuraTools(server: McpServer): void {
         'Devuelve única y exclusivamente la anatomía del JSON de respuesta que entrega la API (qué campos retornan, sus tipos, y estructura de anidación).',
       inputSchema: {
         entidad: z
-          .enum(['licitaciones', 'ordenes_compra', 'proveedores', 'compradores'])
-          .describe('Entidad para la cual deseas conocer su estructura de respuesta JSON.'),
+          .enum([
+            'licitaciones',
+            'ordenes_compra',
+            'proveedores',
+            'compradores',
+          ])
+          .describe(
+            'Entidad para la cual deseas conocer su estructura de respuesta JSON.',
+          ),
       },
     },
     ({ entidad }) => {
@@ -328,8 +417,15 @@ export function registerEstructuraTools(server: McpServer): void {
         'Devuelve CÓMO realizar las consultas: qué parámetros lógicos se aceptan y los anexos/diccionarios (ej: qué número es "Licitación Pública").',
       inputSchema: {
         entidad: z
-          .enum(['licitaciones', 'ordenes_compra', 'proveedores', 'compradores'])
-          .describe('Entidad para la cual deseas conocer los parámetros y anexos de consulta.'),
+          .enum([
+            'licitaciones',
+            'ordenes_compra',
+            'proveedores',
+            'compradores',
+          ])
+          .describe(
+            'Entidad para la cual deseas conocer los parámetros y anexos de consulta.',
+          ),
       },
     },
     ({ entidad }) => {
@@ -349,8 +445,15 @@ export function registerEstructuraTools(server: McpServer): void {
         'Muestra ejemplos reales de URLs y rutas soportadas (JSON, XML) con sus combinaciones, para saber cómo se arma exactamente una ruta HTTP hacia la API.',
       inputSchema: {
         entidad: z
-          .enum(['licitaciones', 'ordenes_compra', 'proveedores', 'compradores'])
-          .describe('Entidad para la cual deseas conocer los ejemplos de llamados y URLs.'),
+          .enum([
+            'licitaciones',
+            'ordenes_compra',
+            'proveedores',
+            'compradores',
+          ])
+          .describe(
+            'Entidad para la cual deseas conocer los ejemplos de llamados y URLs.',
+          ),
       },
     },
     ({ entidad }) => {
